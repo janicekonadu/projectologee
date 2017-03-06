@@ -1,0 +1,68 @@
+			
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Ologee: Resources for Refugees</title>
+		<meta name="description" content="Blueprint: Blueprint: Responsive Multi-Column Form" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="../static/css/results.css" />		
+		<link rel="stylesheet" type="text/css" href="../static/css/default.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/component.css" />
+		<script src="js/modernizr.custom.js"></script>
+	</head>
+	<body class="hidden">
+		<div class="container">
+			<header class="clearfix">
+
+				<span><img src="../static/img/ologee.png" /></span>
+				<h1>Resources for Refugees</h1>
+				<nav>
+					<a href="/">Home</a>
+					<a href="/about">About</a>
+					<a href="/getyourinfo">Get Your Info</a> 	
+					<a href="/team">The Team</a>  
+				</nav>
+
+				<hr/>
+				{% set cnt = false %}
+				{% for tran in translators %}
+					{% if cnt == false %}
+						<h1 class="bigger"> The translators listed on this page speak {{ tran.language }}. </h1>
+					{% endif %}
+
+					{% set cnt = true %}
+		
+				{% endfor %}
+
+
+				<div class="translator">
+						<ul>
+
+							{% for translator in translators %}
+								<li>
+								<h2>{{translator.name}}</h2>
+
+								<p>
+									<b>Address:</b> {{ translator.address}} <br/>
+									<b>Phone Number:</b> {{ translator.telephone}} <br/>
+									<b>Cell Number:</b> {{ translator.cellPhone}} 
+									<br/>
+								</p>
+								</li>
+							{% endfor %}
+							
+
+						</ul>
+
+				</div>
+
+			</header>
+		</div>
+		
+		<script src="../static/js/jquery.min.js"></script>
+		<script src="../static/js/ologee.js"></script>
+	</body>
+</html>	
