@@ -1,0 +1,126 @@
+
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>Ologee: Resources for Refugees</title>
+		<meta name="description" content="Blueprint: Blueprint: Responsive Multi-Column Form" />
+		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="../static/css/results.css" />		
+		<link rel="stylesheet" type="text/css" href="../static/css/default.css" />
+		<link rel="stylesheet" type="text/css" href="../static/css/component.css" />		
+		<script src="js/modernizr.custom.js"></script>
+	</head>
+	<body class="resultbody hidden">
+		<div class="container">
+			<header id="dos "class="clearfix">
+				<span><img src="../static/img/ologee.png" /></span>
+				<h1>Resources for Refugees</h1>
+				<nav>
+					<a href="/">Home</a>
+					<a href="/about">About</a>
+					<a href="/getyourinfo">Get Your Info</a> 	
+					<a href="/team">The Team</a>  
+				</nav>
+				<hr/>
+					
+			<div class="results">
+
+				<div class="hiddenDos first">
+					<h1 class="hello hiddenDos first">Hello, {{fName}}</h1>
+					<hr class="undL" />
+				</div>
+
+				<div class="inside">
+
+					<div class="forms hiddenDos second">
+						<h3 class="resultTitle"> Here are the forms you'll need: </h3>
+
+						<ul>
+							{% for form in forms %}
+								<li>
+									<div class="formID"><span>{{form.name}}<hr/></span></div> 
+									<div class="formDes">
+										<h2 class="formName"> {{form.officialName}} </h2> <br/>
+										{{form.description}}
+										
+									</div> 
+									<div class="formButtons">
+										<a href="{{form.pdfLink}}">Download Form</a>
+										<a href="{{form.mainLink}}" target="_blank"> More Info</a>
+									</div> 
+								</li>
+							{% endfor %}
+						</ul>
+						<div class="downall"><a href="../static/forms.zip">Download all forms.</a></div>
+					</div>	
+					<div class="contran hiddenDos third">
+						<div class="contact">
+							<h3 class="resultTitle"> Contact UNHCR Office </h3>
+
+							{% for country in countryInfo %}
+
+								<div class="cBox">
+									<img class="flag" src="../static/img/{{country.flag}}" />
+									<div class="country">{{country.name}}</div>
+								</div>
+
+								<br/><br/>
+
+
+								<h2> Address </h2>
+								<p>
+									{{country.unhcrAddresses.replace(",," , "</br>") }} 
+								</p>
+
+								<br/><br/>
+
+								<h2> Telephone Number </h2>
+								<p>
+									{{ country.telephone}} 
+								</p>
+
+								<br/><br/>
+
+								<h2> Email Address</h2>
+								<p>
+									{{ country.email}} 
+								</p>			
+
+								<br/><br/>				
+
+
+								<a class="formButtons" target="_blank" href="{{country.unhcrURL}}"> Visit UNHCR Website </a>
+
+
+							{% endfor %}
+
+							<br/><br/>	
+							<hr/>
+
+							<h3 class="resultTitle"> Do You Need a Translator? </h3>
+							<form action="/translators" target="_blank" method="GET" class="cbp-mc-form">
+								{% for c in countryInfo %}
+									<button class="formButtons" name="tranCountry" type="submit" value="{{c.name.lower()}}">Yes!</button>
+								{% endfor %}
+							</form>	
+
+						</div>
+
+					</div>
+
+				</div>
+
+
+			</div>
+
+			</header>
+
+		</div>
+
+		<script src="../static/js/jquery.min.js"></script>
+		<script src="../static/js/ologee.js"></script>	
+	</body>
+</html>
